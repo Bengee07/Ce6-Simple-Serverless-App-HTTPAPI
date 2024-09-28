@@ -220,7 +220,7 @@ resource "aws_eip" "lb" {
 }
 
 resource "aws_instance" "example" {
-  ami           = "ami-12345678"  # Replace with your AMI ID
+  ami           = "ami-0aa097a5c0d31430a"  # Replace with your AMI ID
   instance_type = "t2.micro"       # Replace with your desired instance type
 
   # Add any necessary configurations (tags, subnet_id, etc.)
@@ -231,7 +231,7 @@ resource "aws_instance" "example" {
 
 resource "aws_route53_record" "http-api" {
     zone_id = data.aws_route53_zone.zone.zone_id
-  name    = "www.example.com"
+  name    = "${local.name_prefix}.sctp-sandbox.com"
   type    = "A"
   ttl     = 300
   records = [aws_eip.lb.public_ip]
